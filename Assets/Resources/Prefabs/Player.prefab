@@ -12,7 +12,7 @@ GameObject:
   - 95: {fileID: 9530000}
   - 114: {fileID: 11428504}
   - 50: {fileID: 5051152}
-  - 60: {fileID: 6061006}
+  - 58: {fileID: 5832962}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -39,17 +39,17 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153410}
-  m_Mass: 1
+  m_Mass: .5
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_IsKinematic: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &6061006
-PolygonCollider2D:
+--- !u!58 &5832962
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -58,17 +58,9 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: .137500003, y: .600000024}
-      - {x: -.162499994, y: .600000024}
-      - {x: -.162499994, y: .0874999985}
-      - {x: -.137500003, y: .0125000002}
-      - {x: -.075000003, y: 0}
-      - {x: .137500003, y: 0}
-      - {x: .174999997, y: .0625}
-      - {x: .174999997, y: .512499988}
+  m_Offset: {x: 0, y: .300000012}
+  serializedVersion: 2
+  m_Radius: .300000012
 --- !u!95 &9530000
 Animator:
   serializedVersion: 3
@@ -80,7 +72,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 295b0490de5b24b1b891288f6b6b94bf, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -97,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516da7ad4c63c4a01901d6e4664338bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: {x: .0500000007, y: .0500000007}
 --- !u!212 &21216600
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -133,11 +124,51 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SPEED.x
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SPEED.y
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: dcb2b89f15bb244e0b47612452fa587f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

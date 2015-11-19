@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerControlScript : Token {
+public class PlayerControler : Token {
 	// 速度
-	public Vector2 SPEED = new Vector2(0.05f, 0.05f);
+	Vector2 SPEED = new Vector2(0.08f, 0.08f);
 	bool isClicked = false;
 	Vector2 currentPoint;
 
 	// Use this for initialization
 	void Start () {
-		
+		SetVelocity(0, 0);
 	}
 	
 	// Update is called once per frame
@@ -31,6 +31,26 @@ public class PlayerControlScript : Token {
 				this.GetComponent<Animator> ().SetBool ("_up", true);
 			}
 		}
+		// カメラの左下座標を取得
+		Vector2 min = GetWorldMin();
+		//		Debug.Log("minの値:" + min);
+		
+		// カメラの右上座標を取得する
+		Vector2 max = GetWorldMax();
+		//		Debug.Log("maxの値:" + max);
+		if (X < min.x || max.x < X)
+		{
+			// 画面外に出たので、X移動量を反転する
+			VX *= -1;
+			// 画面内に移動する
+			ClampScreen();
+		}
+		if (Y < min.y || max.y < Y) {
+			// 画面外に出たので、Y移動量を反転する
+			VY *= -1;
+			// 画面内に移動する
+			ClampScreen ();
+		}
 	}
 	
 	// 移動関数
@@ -44,29 +64,34 @@ public class PlayerControlScript : Token {
 
 		// Keybord
 		// 左キーを押し続けていたら
+		/*
 		if (Input.GetKey ("left")) {
 			// 代入したPositionに対して加算減算を行う
-			VY= VX = 0 ;
+			VY = VX = 0;
 			Position.x -= SPEED.x;
 			this.GetComponent<Animator> ().SetBool ("_left", true);
+			transform.position = Position;
 		} else if (Input.GetKey ("right")) { // 右キーを押し続けていたら
 			// 代入したPositionに対して加算減算を行う
-			VY= VX = 0 ;
+			VY = VX = 0;
 			Position.x += SPEED.x;
 			this.GetComponent<Animator> ().SetBool ("_right", true);
+			transform.position = Position;
 		} else if (Input.GetKey ("up")) { // 上キーを押し続けていたら
 			// 代入したPositionに対して加算減算を行う
-			VY= VX = 0 ;
+			VY = VX = 0;
 			Position.y += SPEED.y;
 			this.GetComponent<Animator> ().SetBool ("_up", true);
+			transform.position = Position;
 		} else if (Input.GetKey ("down")) { // 下キーを押し続けていたら
 			// 代入したPositionに対して加算減算を行う
-			VY= VX = 0 ;
+			VY = VX = 0;
 			Position.y -= SPEED.y;
 			this.GetComponent<Animator> ().SetBool ("_down", true);
+			transform.position = Position;
 		}
+		*/
 /*
-		else {
 			if(Input.GetMouseButton(0)){
 				Vector3 tapPoint = new Vector3(0,0);
 				float playerSpeed = 0.1f;
@@ -102,32 +127,32 @@ public class PlayerControlScript : Token {
 				this.GetComponent<Animator> ().SetBool("p_run",false);
 			}
 */
-/*		} else {
+//	   else {
 
 			// 現在の位置に加算減算を行ったPositionを代入する
-			float x = CrossPlatformInputManager.GetAxisRaw ("Horizontal");
+			float x = Input.GetAxisRaw ("Horizontal");
 		
 			// 上・下
-			float y = CrossPlatformInputManager.GetAxisRaw ("Vertical");
+			float y = Input.GetAxisRaw ("Vertical");
 		
-			if (x<0) {
+			if (x < 0) {
 				// 代入したPositionに対して加算減算を行う
 				this.GetComponent<Animator> ().SetBool ("_left", true);
-			} else if (x>0) { // 右キーを押し続けていたら
+			} else if (x > 0) { // 右キーを押し続けていたら
 				// 代入したPositionに対して加算減算を行う
 				this.GetComponent<Animator> ().SetBool ("_right", true);
-			} else if (y>0) { // 上キーを押し続けていたら
+			} else if (y > 0) { // 上キーを押し続けていたら
 				// 代入したPositionに対して加算減算を行う
 				this.GetComponent<Animator> ().SetBool ("_up", true);
-			} else if (y<0) { // 下キーを押し続けていたら
+			} else if (y < 0) { // 下キーを押し続けていたら
 				// 代入したPositionに対して加算減算を行う
 				this.GetComponent<Animator> ().SetBool ("_down", true);
 			}
 
 			// 移動する向きを求める
 			Position = new Vector2 (x, y).normalized;
-		}*/
-		transform.position = Position;
+
+//		}
 	}
 
 }

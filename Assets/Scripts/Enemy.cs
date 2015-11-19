@@ -25,7 +25,7 @@ public class Enemy : Token {
 		// カメラの右上座標を取得する
 		Vector2 max = GetWorldMax();
 //		Debug.Log("maxの値:" + max);
-
+		/*
 		if (X < min.x || max.x < X)
 		{
 			// 画面外に出たので、X移動量を反転する
@@ -36,11 +36,11 @@ public class Enemy : Token {
 		if (Y < min.y || max.y < Y)
 		{
 			// 画面外に出たので、Y移動量を反転する
-			VY *= -1;
+			VY *= -2;
 			// 画面内に移動する
 			ClampScreen();
 		}
-
+		*/
 
 	}
 	public static Enemy Add(float x, float y)
@@ -60,6 +60,6 @@ public class Enemy : Token {
 		}
 		Enemy.Add (Random.Range (100, 300), Random.Range (100, 300));
 		// 破棄する
-		DestroyObj();
+//		DestroyObj();
 	}
 }

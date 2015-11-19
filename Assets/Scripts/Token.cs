@@ -421,7 +421,7 @@ public class Token : MonoBehaviour
     max.y -= _height;
     return max;
   }
-
+	
   /// 消滅（メモリから削除）.
   public void DestroyObj ()
   {

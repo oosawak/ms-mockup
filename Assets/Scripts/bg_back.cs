@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using JsonNode;
+using MiniJSON;
 
 public class bg_back : Token {
 	public GameObject player ;
+	public float stage_p ;
 	bool isClicked = false;
 	bool isDrag = false;
 
@@ -12,12 +16,24 @@ public class bg_back : Token {
 		int enemymax = 10 ;
 		if(enemycnt < enemymax) {
 			for (; enemycnt < enemymax; enemycnt++) {
-				Enemy.Add (Random.Range (100, 300), Random.Range (100, 300));
+				Enemy.Add (0, 0);
+//				Enemy.Add (Random.Range (100, 300), Random.Range (100, 300));
 			}
 			enemycnt--;
 		}
-
 		//		player = GameObject.Find("Player");
+
+		var textAsset = Resources.Load ("sample") as TextAsset;
+		string jsonText = textAsset.text;
+
+//		var json = Json.Deserialize (jsonText) as Dictionary<string, object>;
+//		JsonNode json = JsonNode.Parse(jsonText);
+//		Debug.Log(json[0]["x"]);
+
+//		foreach(IDictionary data in datas) {
+//			data["x"].ToString;
+//			BackEnemy.Add ((float)xw,0.0f);
+//		}
 	}
 	
 	// Update is called once per frame
@@ -67,7 +83,7 @@ public class bg_back : Token {
 		
 		Vector2 tapPoint = new Vector2(newVector.x, newVector.y);
 
-		if(Vector2.Distance(currentPoint, tapPoint)<0.1){
+		if(Vector2.Distance(currentPoint, tapPoint)<0.05){
 			VY= VX = 0 ;
 			return;
 		}
@@ -77,7 +93,7 @@ public class bg_back : Token {
 //		Debug.Log("OnMouseUp:"+dir);
 
 		// 速さは2		
-		float spd = 1;
+		float spd = 2;
 		Token _toToken;
 		_toToken = player.GetComponent<Token>();
 		_toToken.SetVelocity(dir, spd);
